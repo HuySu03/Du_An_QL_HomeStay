@@ -2,20 +2,48 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ql_homestay;
+package view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  *
- * @author HuySu
+ * @author Admin
  */
-public class form_ql extends javax.swing.JFrame {
+public class Manhinh extends javax.swing.JDialog {
+     void init()
+          {
+              setLocationRelativeTo(null);
+              setTitle("Hệ thống quản lý Homestay");
+              new Timer(20,new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent e) {
+                      int value = pgb_Chao.getValue();
+                      if(value <100)
+                      {
+                          pgb_Chao.setValue( value+1);
+                          
+                      }else 
+                      {
+                         Manhinh.this.dispose();
+                      }
+                  }
+              }).start();
+          }
 
     /**
-     * Creates new form JFrame
+     * Creates new form Manhinh
      */
-    public form_ql() {
-        initComponents();
-    }
+     public Manhinh(java.awt.Frame parent,boolean modal) {
+        super(parent,modal);
+    initComponents();
+    setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    init();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,46 +54,26 @@ public class form_ql extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        pgb_Chao = new javax.swing.JProgressBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/z4605139870707_54932fe4ae3a4608226f3fef37fd6e10.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(75, 75, 75)
-                .addComponent(jButton1)
-                .addGap(70, 70, 70))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, Short.MAX_VALUE)
+            .addComponent(pgb_Chao, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton2)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addComponent(pgb_Chao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -88,28 +96,26 @@ public class form_ql extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(form_ql.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manhinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(form_ql.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manhinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(form_ql.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manhinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(form_ql.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Manhinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new form_ql().setVisible(true);
+                  new Manhinh(new JFrame(), true).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JProgressBar pgb_Chao;
     // End of variables declaration//GEN-END:variables
 }
