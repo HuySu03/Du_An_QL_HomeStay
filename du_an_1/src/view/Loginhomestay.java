@@ -14,7 +14,7 @@ public class Loginhomestay extends javax.swing.JDialog {
  void init()
           {
               setLocationRelativeTo(null);
-              setTitle("Hệ thống đăng nhập homestay");
+              setTitle("Hệ Thống Đăng Nhập HomeStay");
               
           }
     /**
