@@ -10,12 +10,13 @@ import java.util.Date;
  */
 public class BookingPhong {
     private Date NgayDat, CheckIn, CheckOut;
-    private String IdPhong, IdKH, IdNV;
+    private String IDBooking,IdPhong, IdKH, IdNV;
 
     public BookingPhong() {
     }
 
-    public BookingPhong(Date NgayDat, Date CheckIn, Date CheckOut, String IdPhong, String IdKH, String IdNV) {
+    public BookingPhong(Date NgayDat, Date CheckIn, Date CheckOut, String IDBooking, String IdPhong, String IdKH, String IdNV) {
+        this.IDBooking = IDBooking;
         this.NgayDat = NgayDat;
         this.CheckIn = CheckIn;
         this.CheckOut = CheckOut;
@@ -48,6 +49,14 @@ public class BookingPhong {
         this.CheckOut = CheckOut;
     }
 
+    public String getIDBooking() {
+        return IDBooking;
+    }
+
+    public void setIDBooking(String IDBooking) {
+        this.IDBooking = IDBooking;
+    }
+
     public String getIdPhong() {
         return IdPhong;
     }
@@ -71,5 +80,5 @@ public class BookingPhong {
     public void setIdNV(String IdNV) {
         this.IdNV = IdNV;
     }
-    
+
 }
