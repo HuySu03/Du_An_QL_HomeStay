@@ -49,14 +49,15 @@ private Repo_Ds_Phong repo = new Repo_Ds_Phong();
     panelList.add(JpanelPhong14);
     panelList.add(JpanelPhong15);
     panelList.add(JpanelPhong16);
+    
 
     // Kiểm tra số lượng phòng và đảm bảo không vượt quá số lượng JPanel có sẵn
-    int numRooms = listPhong.size();
-    for (int i = 0; i < numRooms; i++) {
-        String idPhong = listPhong.get(i).getId_Phong();
-        // Hiển thị chi tiết phòng vào các JPanel tương ứng
-        showPanel(new Chi_Tiet_Phong(idPhong, mainForm), panelList.get(i));
-    }
+    int numRooms = Math.min(listPhong.size(), panelList.size());
+for (int i = 0; i < numRooms; i++) {
+    String idPhong = listPhong.get(i).getId_Phong();
+    showPanel(new Chi_Tiet_Phong(idPhong, mainForm), panelList.get(i));
+}
+
 }
 
     // Phương thức để hiển thị các chi tiết phòng vào từng JPanel

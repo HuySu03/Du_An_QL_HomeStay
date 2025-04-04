@@ -105,12 +105,19 @@ public class DangNhap_View extends javax.swing.JFrame {
         lnlPass.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lnlPass.setText("Mật khẩu: ");
 
+        txtUsername.setText("namvu");
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
         txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUsernameKeyPressed(evt);
             }
         });
 
+        txtPassword.setText("123456");
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -250,6 +257,10 @@ public class DangNhap_View extends javax.swing.JFrame {
 //            this.login();
 //        }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     /**
      * @param args the command line arguments

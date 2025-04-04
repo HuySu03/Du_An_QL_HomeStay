@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class JdbcHelPer {
 
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String dburl = "jdbc:sqlserver://DESKTOP-PLN0I1V\\SQLEXPRESS:1433;database=final;encrypt=true;trustServerCertificate=true;";
+    private static String dburl = "jdbc:sqlserver://HUYSU\\SQLEXPRESS:1433;database=final;encrypt=true;trustServerCertificate=true;";
     private static String username = "sa";
     private static String password = "123";
 

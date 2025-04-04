@@ -17,7 +17,7 @@ public class Model_Nhan_Vien {
     boolean gioitinh;
     int tuoi;
     String CCCD;
-    boolean chucvu;
+
 
     public Model_Nhan_Vien(String id_Nhanvien, String Ho_ten, String sđt, String email, String diachi, boolean gioitinh, int tuoi, String CCCD, boolean chucvu) {
         this.id_Nhanvien = id_Nhanvien;
@@ -28,7 +28,7 @@ public class Model_Nhan_Vien {
         this.gioitinh = gioitinh;
         this.tuoi = tuoi;
         this.CCCD = CCCD;
-        this.chucvu = chucvu;
+   
     }
 
     public String getId_Nhanvien() {
@@ -95,17 +95,11 @@ public class Model_Nhan_Vien {
         this.CCCD = CCCD;
     }
 
-    public boolean isChucvu() {
-        return chucvu;
-    }
-
-    public void setChucvu(boolean chucvu) {
-        this.chucvu = chucvu;
-    }
+   
     
       public Object[] toDataRow(){
         return new Object[]{
-            this.getId_Nhanvien(),this.getHo_ten(),this.getSđt(),this.getEmail(),this.isGioitinh()?"Nam":"Nữ",this.getTuoi(),this.getCCCD(),this.isChucvu()?"admin":"Nhân viên"
+            this.getId_Nhanvien(),this.getHo_ten(),this.getSđt(),this.getEmail(),this.isGioitinh()?"Nam":"Nữ",this.getTuoi(),this.getCCCD()
         };
     }
 }

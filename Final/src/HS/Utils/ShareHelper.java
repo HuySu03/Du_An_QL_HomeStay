@@ -6,7 +6,7 @@ public class ShareHelper {
 
     public static Model_Nhan_Vien USER = null;
 
-    // Biến identity, sửa lại chính tả thành 'identity'
+    // Biến identity
     public static int identity = 0;
 
     /**
@@ -26,29 +26,27 @@ public class ShareHelper {
     }
 
     /**
-     * Kiểm tra xem người dùng đã được xác thực và có quyền admin chưa.
+     * (Đã bỏ chức năng phân quyền admin/nhân viên)
      * 
-     * @return true nếu người dùng là admin, false nếu không.
+     * Mặc định trả về true nếu đã đăng nhập.
      */
     public static boolean authenticated() {
-        return ShareHelper.auth() && USER.isChucvu();  // Thay isChucVu() bằng isAdmin()
+        return auth();
     }
 
     /**
-     * Kiểm tra xem người dùng đã được xác thực và là nhân viên bình thường chưa.
+     * (Đã bỏ chức năng phân quyền nhân viên)
      * 
-     * @return true nếu người dùng là nhân viên, false nếu không.
+     * Mặc định trả về true nếu đã đăng nhập.
      */
     public static boolean authenticatedNV() {
-        return ShareHelper.auth() && !USER.isChucvu();  // Thay isChucVu() bằng isAdmin()
+        return auth();
     }
 
     /**
      * Trả về giá trị của biến identity.
-     * 
-     * @return identity.
      */
     public static int getIdentity() {
-        return ShareHelper.identity;  // Trả về trực tiếp giá trị identity, tránh đệ quy
+        return ShareHelper.identity;
     }
 }
