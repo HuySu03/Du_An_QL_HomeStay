@@ -1,7 +1,7 @@
 
 package HS.View;
 
-import HS.Model.Model_NhanVien;
+import HS.Model.Model_Nhan_Vien;
 import HS.Repo.Repo_NhanVien;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,10 +25,10 @@ public class NhanVien_View extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void fillTable(ArrayList<Model_NhanVien>listNV){
+    private void fillTable(ArrayList<Model_Nhan_Vien>listNV){
         mol = (DefaultTableModel) tbl_NV.getModel();
         mol.setRowCount(0);
-        for (Model_NhanVien x : listNV) {
+        for (Model_Nhan_Vien x : listNV) {
             mol.addRow(x.toDataRow());
         }
     }
@@ -47,11 +47,11 @@ public class NhanVien_View extends javax.swing.JFrame {
         }
         txt_tuoiNV.setText(tbl_NV.getValueAt(index, 6).toString());
         txt_cccdNV.setText(tbl_NV.getValueAt(index, 7).toString());
-        txt_chucNV.setText(tbl_NV.getValueAt(index, 8).toString());        
+              
     }
     
-    Model_NhanVien readFormNV(){
-        String id_NV,ho_ten,sdt,email,dia_chi,cccd,chuc_vu;
+    Model_Nhan_Vien readFormNV(){
+        String id_NV,ho_ten,sdt,email,dia_chi,cccd;
         int gioi_tinh,tuoi;
         
         if(txt_maNV.getText().isEmpty()){
@@ -113,12 +113,8 @@ public class NhanVien_View extends javax.swing.JFrame {
         }
         cccd = txt_cccdNV.getText().trim();
         
-        if(txt_chucNV.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"Chức vụ nhân viên trống!");
-            txt_chucNV.requestFocus();
-            return null;
-        }
-        chuc_vu = txt_chucNV.getText().trim();
+        
+       
         return new Model_NhanVien(id_NV, ho_ten, sdt, email, dia_chi, gioi_tinh, tuoi, cccd, chuc_vu);
     }
     @SuppressWarnings("unchecked")

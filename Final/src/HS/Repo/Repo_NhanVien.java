@@ -5,9 +5,9 @@
 package HS.Repo;
 
 
-import HS.Model.Model_NhanVien;
 
-import HS.Model.Model_NhanVien;
+
+import HS.Model.Model_Nhan_Vien;
 import HS.Utils.DBconnet;
 import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
@@ -29,8 +29,8 @@ public class Repo_NhanVien {
         con = DBconnet.getConnection();
     }
     
-    public ArrayList<Model_NhanVien> getAllNV(){
-        ArrayList<Model_NhanVien> listNV = new ArrayList<>();
+    public ArrayList<Model_Nhan_Vien> getAllNV(){
+        ArrayList<Model_Nhan_Vien> listNV = new ArrayList<>();
         sql = "Select * from Nhan_Vien";
         try {
             ps = con.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class Repo_NhanVien {
                 tuoi = rs.getInt(7);
                 cccd = rs.getString(8);
                 chuc = rs.getString(9);
-                listNV.add(new Model_NhanVien(id, sdt, sdt, email, diachi, gt, tuoi, cccd, chuc));
+                listNV.add(new Model_Nhan_Vien(diachi, sdt, sdt, email, diachi, gt, tuoi, cccd, gt));
             }
             return listNV;
         } catch ( Exception e){
@@ -57,21 +57,21 @@ public class Repo_NhanVien {
         }
     }
     
-    public int addNV(Model_NhanVien nv){
+    public int addNV(Model_Nhan_Vien nv){
         sql = "INSERT INTO Nhan_Vien (id_NV, ho_ten, sdt, email, dia_chi, gioi_tinh, tuoi, cccd, chuc_vu) " +
-                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = con.prepareStatement(sql);
             
-            ps.setObject(1, nv.getId_NV());
-            ps.setObject(2, nv.getHoten());
-            ps.setObject(3, nv.getSdt());
+            ps.setObject(1, nv.getId_Nhanvien());
+            ps.setObject(2, nv.getHo_ten());
+            ps.setObject(3, nv.getSđt());
             ps.setObject(4, nv.getEmail());
-            ps.setObject(5, nv.getDia_chi());
-            ps.setObject(6, nv.isGioi_tinh());
+            ps.setObject(5, nv.getDiachi());
+            ps.setObject(6, nv.isGioitinh());
             ps.setObject(7, nv.getTuoi());
-            ps.setObject(8, nv.getCccd());
-            ps.setObject(9, nv.getChucvu());
+            ps.setObject(8, nv.getCCCD());
+            
             
             return ps.executeUpdate();
         } catch (Exception e) {
@@ -82,21 +82,21 @@ public class Repo_NhanVien {
     
     
     
-    public int update_NhanVien(Model_NhanVien nv_New){
+    public int update_NhanVien(Model_Nhan_Vien nv_New){
         sql = "UPDATE Nhan_Vien SET id_NV=?, ho_ten=?, sdt=?, "
         + "email=?, dia_chi=?, gioi_tinh=?, tuoi=0, cccd=?, chuc_vu=? WHERE id_NV=?";
         try {
             ps = con.prepareStatement(sql);
             
-            ps.setString(1, nv_New.getId_NV());
-            ps.setString(2, nv_New.getHoten());
-            ps.setString(3, nv_New.getSdt());
+            ps.setString(1, nv_New.getId_Nhanvien());
+            ps.setString(2, nv_New.getHo_ten());
+            ps.setString(3, nv_New.getSđt());
             ps.setString(4, nv_New.getEmail());
-            ps.setString(5, nv_New.getDia_chi());
+            ps.setString(5, nv_New.getDiachi());
             ps.setBoolean(6, true);
             ps.setInt(7, nv_New.getTuoi());
-            ps.setString(8, nv_New.getCccd());
-            ps.setString(9, nv_New.getChucvu());
+            ps.setString(8, nv_New.getCCCD());
+          
             
             return ps.executeUpdate();
         } catch (Exception e) {
