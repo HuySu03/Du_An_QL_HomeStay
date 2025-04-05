@@ -10,9 +10,7 @@ package HS.View;
  */
 public class Phieu_dat extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Phieu_dat
-     */
+   
      private View_Main mainForm;
      private String MaPhong;
     private String LoaiPhong;

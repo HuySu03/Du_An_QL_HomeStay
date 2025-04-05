@@ -26,101 +26,84 @@ public class JpanelTrangChu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JpanelView4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        JpanelView = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        JpanelView4.setBackground(new java.awt.Color(255, 255, 204));
-        JpanelView4.setPreferredSize(new java.awt.Dimension(730, 556));
-        JpanelView4.setRequestFocusEnabled(false);
+        JpanelView.setBackground(new java.awt.Color(255, 204, 153));
+        JpanelView.setToolTipText("");
+        JpanelView.setPreferredSize(new java.awt.Dimension(730, 556));
+        JpanelView.setRequestFocusEnabled(false);
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel18.setText("KHÁCH SẠN XIN CHÀO");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/IMG/homestay.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Dịch vụ tốt nhất, Đúng lúc, Đúng người");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("Xin chào");
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/img/5 sao.png"))); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 0, 255));
+        jLabel3.setText("Chào Mừng Đến HomeStay The Boy  ");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/img/hotel.jpg"))); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel4.setText("\"Nơi Có Thể Biến Giấc Mơ Của Bạn Vẫn Là Giấc Mơ\"");
 
-        javax.swing.GroupLayout JpanelView4Layout = new javax.swing.GroupLayout(JpanelView4);
-        JpanelView4.setLayout(JpanelView4Layout);
-        JpanelView4Layout.setHorizontalGroup(
-            JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelView4Layout.createSequentialGroup()
-                .addGroup(JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jLabel20))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel18))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+        javax.swing.GroupLayout JpanelViewLayout = new javax.swing.GroupLayout(JpanelView);
+        JpanelView.setLayout(JpanelViewLayout);
+        JpanelViewLayout.setHorizontalGroup(
+            JpanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelViewLayout.createSequentialGroup()
+                .addGroup(JpanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JpanelViewLayout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel1))
+                    .addGroup(JpanelViewLayout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(jLabel3))
+                    .addGroup(JpanelViewLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel4))
+                    .addGroup(JpanelViewLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
-        JpanelView4Layout.setVerticalGroup(
-            JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelView4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel18)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel20)
+        JpanelViewLayout.setVerticalGroup(
+            JpanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelViewLayout.createSequentialGroup()
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpanelView4, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+            .addComponent(JpanelView, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(JpanelView4, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addComponent(JpanelView, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JpanelView1;
-    private javax.swing.JPanel JpanelView2;
-    private javax.swing.JPanel JpanelView3;
-    private javax.swing.JPanel JpanelView4;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JPanel JpanelView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

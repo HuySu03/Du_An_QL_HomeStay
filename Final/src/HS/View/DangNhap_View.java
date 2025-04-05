@@ -22,30 +22,30 @@ public class DangNhap_View extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-    }public void login() {
-    String taiKhoan = txtUsername.getText();  // Giả sử txtUsername là JTextField
-    String matKhau = new String(txtPassword.getPassword());  // Giả sử txtPassword là JPasswordField
-
-    Repo_Dang_Nhap repo = new Repo_Dang_Nhap();
-    Model_Dang_Nhap user = repo.login(taiKhoan, matKhau);
-
-    if (user != null) {
-        // Đăng nhập thành công
-        JdbcHelPer.showMessage("Đăng nhập thành công!");
-
-        // Tạo và hiển thị cửa sổ chính
-        View_Main view_Main = new View_Main();
-        view_Main.setVisible(true);
-
-        // Đóng cửa sổ đăng nhập
-        this.dispose();
-    } else {
-        // Đăng nhập thất bại
-        JdbcHelPer.showMessage("Tài khoản hoặc mật khẩu không chính xác!");
     }
-}
 
+    public void login() {
+        String taiKhoan = txtUsername.getText();  // Giả sử txtUsername là JTextField
+        String matKhau = new String(txtPassword.getPassword());  // Giả sử txtPassword là JPasswordField
 
+        Repo_Dang_Nhap repo = new Repo_Dang_Nhap();
+        Model_Dang_Nhap user = repo.login(taiKhoan, matKhau);
+
+        if (user != null) {
+            // Đăng nhập thành công
+           JdbcHelPer.showMessage("Đăng nhập thành công!");
+            
+            // Tạo và hiển thị cửa sổ chính
+            View_Main view_Main = new View_Main();
+            view_Main.setVisible(true);
+
+            // Đóng cửa sổ đăng nhập
+            this.dispose();
+        } else {
+            // Đăng nhập thất bại
+            JdbcHelPer.showMessage("Tài khoản hoặc mật khẩu không chính xác!");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
