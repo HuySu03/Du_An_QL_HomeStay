@@ -1,10 +1,10 @@
 package HS.Utils;
 
-import HS.Model.Model_Nhan_Vien;
+import HS.Model.Model_NhanVien;
 
 public class ShareHelper {
 
-    public static Model_Nhan_Vien USER = null;
+    public static Model_NhanVien USER = null;
 
     // Biến identity
     public static int identity = 0;

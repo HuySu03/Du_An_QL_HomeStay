@@ -19,9 +19,9 @@ public class DBconnet {
         try {
             if (conn == null || conn.isClosed()) {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String dbUser = "sa", dbPass = "123",
+                String dbUser = "sa", dbPass = "123456",
                         dbUrl = "jdbc:sqlserver://localhost:1433;" +
-                                "databaseName=final;" +
+                                "databaseName=hoclaicmnr;" +
                                 "encrypt=true;trustServerCertificate=true;";
                 conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
                 System.out.println("Kết nối thành công");

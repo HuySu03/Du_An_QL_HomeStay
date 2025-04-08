@@ -9,7 +9,7 @@ package HS.Model;
  * @author Quyet
  */
 public class Model_KhachHang {
-    String id_Khachhang;
+    String id_KH;
     String Hoten;
     String sdt;
     String CCCD;
@@ -17,8 +17,8 @@ public class Model_KhachHang {
     boolean gioitinh;
     int tuoi;
 
-    public Model_KhachHang(String id_Khachhang, String Hoten, String sdt, String CCCD, String diachi, boolean gioitinh, int tuoi) {
-        this.id_Khachhang = id_Khachhang;
+    public Model_KhachHang(String id_KH, String Hoten, String sdt, String CCCD, String diachi, boolean gioitinh, int tuoi) {
+        this.id_KH = id_KH;
         this.Hoten = Hoten;
         this.sdt = sdt;
         this.CCCD = CCCD;
@@ -27,13 +27,21 @@ public class Model_KhachHang {
         this.tuoi = tuoi;
     }
 
-    public String getId_Khachhang() {
-        return id_Khachhang;
+    public Model_KhachHang() {
     }
 
-    public void setId_Khachhang(String id_Khachhang) {
-        this.id_Khachhang = id_Khachhang;
+  
+
+    public String getId_KH() {
+        return id_KH;
     }
+
+    public void setId_KH(String id_KH) {
+        this.id_KH = id_KH;
+    }
+
+   
+
 
     public String getHoten() {
         return Hoten;
@@ -84,7 +92,7 @@ public class Model_KhachHang {
     }
      public Object[] toDataRow(){
         return new Object[]{
-            this.getId_Khachhang(),this.getHoten(),this.getSdt(),this.getCCCD(),this.getDiachi(),this.isGioitinh()?"Nam":"Nữ",this.getTuoi()
+            this.getId_KH(),this.getHoten(),this.getSdt(),this.getCCCD(),this.getDiachi(),this.isGioitinh()?"Nam":"Nữ",this.getTuoi()
         };
     }
     

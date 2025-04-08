@@ -4,7 +4,7 @@
  */
 package HS.Repo;
 
-import HS.Model.Model_Dang_Nhap;
+import HS.Model.Model_NhanVien;
 import HS.Utils.JdbcHelPer;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import java.util.List;
  * @author huyhy
  */
 public class Repo_Dang_Nhap {
-   public void insert(Model_Dang_Nhap model) {
+   public void insert(Model_NhanVien model) {
         String sql = "insert into dbo.Nhan_Vien(id_NV,ho_ten,sdt,email,dia_chi,gioi_tinh,tuoi,cccd,tai_khoan,mat_khau) values (?,?,?,?,?,?,?,?,?,?)";
         JdbcHelPer.executeUpdate(sql,
                 model.getId_nv(),
@@ -34,13 +34,13 @@ public class Repo_Dang_Nhap {
                 model.getMat_khau()
         );
     }
-public Model_Dang_Nhap login(String taiKhoan, String matKhau) {
+public Model_NhanVien login(String taiKhoan, String matKhau) {
     String sql = "SELECT * FROM dbo.Nhan_Vien WHERE tai_khoan = ? AND mat_khau = ?";
-    List<Model_Dang_Nhap> list = select(sql, taiKhoan, matKhau);
+    List<Model_NhanVien> list = select(sql, taiKhoan, matKhau);
     return list.size() > 0 ? list.get(0) : null;
 }
 
-    public void updatePassword(Model_Dang_Nhap model) {
+    public void updatePassword(Model_NhanVien model) {
         String sql = "UPDATE dbo.Nhan_Vien SET mat_khau = ? where id_NV = ?";
         JdbcHelPer.executeUpdate(sql,
                 model.getMat_khau(),
@@ -48,7 +48,7 @@ public Model_Dang_Nhap login(String taiKhoan, String matKhau) {
     }
     // chưa đụng tới.
 
-    public void update(Model_Dang_Nhap model) {
+    public void update(Model_NhanVien model) {
         String sql = "UPDATE dbo.Nhan_Vien SET ho_ten=?, sdt=?,email=?,dia_chi=?,gioi_tinh=?,tuoi=?,cccd=?,mat_khau=? WHERE MaNV=?";
         JdbcHelPer.executeUpdate(sql,
                 model.getHo_ten(),
@@ -67,27 +67,27 @@ public Model_Dang_Nhap login(String taiKhoan, String matKhau) {
         JdbcHelPer.executeUpdate(sql, MaNV);
     }
 
-    public List<Model_Dang_Nhap> select() {
+    public List<Model_NhanVien> select() {
         String sql = "SELECT * FROM dbo.Nhan_Vien";
         return select(sql);
     }
 
-    public Model_Dang_Nhap findById(String manv) {
+    public Model_NhanVien findById(String manv) {
         String sql = "SELECT * FROM dbo.Nhan_Vien WHERE id_NV=?";
-        List<Model_Dang_Nhap> list = select(sql, manv);
+        List<Model_NhanVien> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
 
     }
 
-    private List<Model_Dang_Nhap> select(String sql, Object... args) {
-        List<Model_Dang_Nhap> list = new ArrayList<>();
+    private List<Model_NhanVien> select(String sql, Object... args) {
+        List<Model_NhanVien> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelPer.executeQuery(sql, args);
                 if (rs != null) {
                     while (rs.next()) {
-                        Model_Dang_Nhap model = readFromResultSet(rs);
+                        Model_NhanVien model = readFromResultSet(rs);
                         list.add(model);
                     }
                 }
@@ -107,8 +107,8 @@ public Model_Dang_Nhap login(String taiKhoan, String matKhau) {
         return list;
     }
 
-    private Model_Dang_Nhap readFromResultSet(ResultSet rs) throws SQLException {
-        Model_Dang_Nhap model = new Model_Dang_Nhap();
+    private Model_NhanVien readFromResultSet(ResultSet rs) throws SQLException {
+        Model_NhanVien model = new Model_NhanVien();
         model.setId_nv(rs.getString("id_NV"));
         model.setHo_ten(rs.getString("ho_ten"));
         model.setSdt(rs.getString("sdt"));

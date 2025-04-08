@@ -82,30 +82,25 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblMaPhong" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbl1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblKieuPhong" pref="162" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbl2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblLoaiPhong" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lbl3" min="-2" pref="63" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="btn_xacnhanj" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="btn_xacnhan" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="lblTrangThai" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblLoaiPhong" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -119,21 +114,16 @@
                       <Component id="lblMaPhong" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblKieuPhong" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLoaiPhong" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_xacnhanj" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="btn_xacnhan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -147,12 +137,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="M&#xe3; Ph&#xf2;ng:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl1">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Ki&#x1ec3;u ph&#xf2;ng:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl2">
@@ -173,24 +157,18 @@
                 <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i ph&#xf2;ng:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblKieuPhong">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Ki&#x1ec3;u ph&#xf2;ng:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblTrangThai">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_xacnhanj">
+            <Component class="javax.swing.JButton" name="btn_xacnhan">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t ph&#xf2;ng"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xacnhanjActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xacnhanActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

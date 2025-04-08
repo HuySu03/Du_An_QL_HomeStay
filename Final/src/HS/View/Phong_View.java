@@ -23,11 +23,19 @@ public class Phong_View extends javax.swing.JFrame {
     private Repo_Booking_Phong repo = new Repo_Booking_Phong();
     private DefaultTableModel mol = new DefaultTableModel();
     private int index = -1;
+       private View_Main mainForm;
+     private String MaPhong;
+    private String LoaiPhong;
+    
+  
 
-    public Phong_View() {
+    public Phong_View(String maphong, String loaiphong, View_Main main) {
         initComponents();
         this.fillTable(repo.getAll());
         index = repo.getAll().size();
+         this.mainForm = main;
+        this.MaPhong = maphong;
+        this.LoaiPhong = loaiphong;
         //this.showData(index-1);  
     }
 
@@ -75,17 +83,14 @@ public boolean checkDate() {
         // Chuyển String sang Date rồi gán vào JDateChooser
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date ngayDatDate = sdf.parse(tbl_bang.getValueAt(index, 4).toString());
-        Calendar ngayDatCal = Calendar.getInstance();
-        ngayDatCal.setTime(ngayDatDate);
-        txt_ngaydat.setCalendar(ngayDatCal);
+       
 
-        Date checkInDate = sdf.parse(tbl_bang.getValueAt(index, 5).toString());
+        Date checkInDate = sdf.parse(tbl_bang.getValueAt(index, 4).toString());
         Calendar checkInCal = Calendar.getInstance();
         checkInCal.setTime(checkInDate);
         txt_checkin.setCalendar(checkInCal);
 
-        Date checkOutDate = sdf.parse(tbl_bang.getValueAt(index, 6).toString());
+        Date checkOutDate = sdf.parse(tbl_bang.getValueAt(index, 5).toString());
         Calendar checkOutCal = Calendar.getInstance();
         checkOutCal.setTime(checkOutDate);
         txt_checkout.setCalendar(checkOutCal);
@@ -96,66 +101,59 @@ public boolean checkDate() {
 }
 Model_Booking_Phong readForm() {
     String id_booking_phong;
-    String ngay_dat;
-    String check_in;
-    String check_out;
+    Date check_in;
+    Date check_out;
     String id_phong;
     String id_KH;
     String id_NV;
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     if (txt_id_booking_phong.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "ID đặt phòng trống");
         txt_id_booking_phong.requestFocus();
         return null;
-    } 
+    }
     id_booking_phong = txt_id_booking_phong.getText().trim();
 
-    if (txt_ngaydat.getDate() == null) {
-        JOptionPane.showMessageDialog(this, "Ngày đặt trống");
-        txt_ngaydat.requestFocus();
-        return null;
-    } 
-    ngay_dat = sdf.format(txt_ngaydat.getDate());
-
+    // Lấy ngày check-in từ JDateChooser
     if (txt_checkin.getDate() == null) {
         JOptionPane.showMessageDialog(this, "Check-in trống");
         txt_checkin.requestFocus();
         return null;
-    } 
-    check_in = sdf.format(txt_checkin.getDate());
+    }
+    check_in = new java.sql.Date(txt_checkin.getDate().getTime()); // ✅ Đúng kiểu dữ liệu
 
+    // Lấy ngày check-out từ JDateChooser
     if (txt_checkout.getDate() == null) {
         JOptionPane.showMessageDialog(this, "Check-out trống");
         txt_checkout.requestFocus();
         return null;
-    } 
-    check_out = sdf.format(txt_checkout.getDate());
+    }
+    check_out = new java.sql.Date(txt_checkout.getDate().getTime()); // ✅ Đúng kiểu dữ liệu
 
     if (txt_idPhong.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "ID phòng trống");
         txt_idPhong.requestFocus();
         return null;
-    } 
+    }
     id_phong = txt_idPhong.getText().trim();
 
     if (txt_idKH.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "ID khách hàng trống");
         txt_idKH.requestFocus();
         return null;
-    } 
+    }
     id_KH = txt_idKH.getText().trim();
 
     if (txt_idNV.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "ID nhân viên trống");
         txt_idNV.requestFocus();
         return null;
-    } 
+    }
     id_NV = txt_idNV.getText().trim();
 
-    return new Model_Booking_Phong(id_booking_phong, ngay_dat, check_in, check_out, id_phong, id_KH, id_NV, rootPaneCheckingEnabled);
+    return new Model_Booking_Phong(id_booking_phong, check_in, check_out, id_phong, id_KH, id_NV, rootPaneCheckingEnabled);
 }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,10 +190,8 @@ Model_Booking_Phong readForm() {
         btn_sua = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
         txt_id_booking_phong = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         txt_checkin = new com.toedter.calendar.JDateChooser();
         txt_checkout = new com.toedter.calendar.JDateChooser();
-        txt_ngaydat = new com.toedter.calendar.JDateChooser();
         HinhNen = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -314,13 +310,13 @@ Model_Booking_Phong readForm() {
 
         tbl_bang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Đặt Phòng", "Mã Phòng", "Mã Khách Hàng", "Mã Nhân Viên", "Ngày Đặt", "Check-In", "Check-Out"
+                "Mã Đặt Phòng", "Mã Phòng", "Mã Khách Hàng", "Mã Nhân Viên", "Check-In", "Check-Out"
             }
         ));
         tbl_bang.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -382,9 +378,6 @@ Model_Booking_Phong readForm() {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("NGÀY ĐẶT");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -415,24 +408,12 @@ Model_Booking_Phong readForm() {
                         .addGap(118, 118, 118))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txt_checkout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(45, 45, 45)
-                        .addComponent(txt_ngaydat, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126))
+                        .addGap(346, 346, 346))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -446,7 +427,18 @@ Model_Booking_Phong readForm() {
                                 .addComponent(txt_idKH, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(txt_idNV, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(334, 334, 334)))
+                        .addGap(334, 334, 334))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(192, 192, 192)
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,8 +452,7 @@ Model_Booking_Phong readForm() {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_ngaydat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(19, 19, 19)
@@ -488,9 +479,7 @@ Model_Booking_Phong readForm() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(30, 30, 30)
@@ -682,7 +671,6 @@ if (result > 0) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Phong_View().setVisible(true);
             }
         });
     }
@@ -701,7 +689,6 @@ if (result > 0) {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -723,6 +710,5 @@ if (result > 0) {
     private javax.swing.JTextField txt_idNV;
     private javax.swing.JTextField txt_idPhong;
     private javax.swing.JTextField txt_id_booking_phong;
-    private com.toedter.calendar.JDateChooser txt_ngaydat;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,56 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package HS.Repo;
 
 import HS.Model.Model_DichVu;
-import HS.Utils.DBconnet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import HS.Utils.JdbcHelPer;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author Quyet
+ * @author Admin
  */
 public class Repo_DichVu {
 
-    private Connection con = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
-    private String sql = null;
-
-    public Repo_DichVu() {
-        con = DBconnet.getConnection();
+    // Lấy tất cả dịch vụ
+    public List<Model_DichVu> getAll() {
+        String sql = "SELECT * FROM Dich_Vu";
+        return executeQuery(sql);
     }
 
-    public ArrayList<Model_DichVu> getAll() {
-        ArrayList<Model_DichVu> list = new ArrayList<>();
+    // Tìm dịch vụ theo tên
+    public Model_DichVu findByName(String tenDV) {
+        String sql = "SELECT * FROM Dich_Vu WHERE ten_DV=?";
+        List<Model_DichVu> list = executeQuery(sql, tenDV);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 
-        sql = "select * from Dich_Vu ";
+    // Thực thi câu lệnh SQL và trả về danh sách dịch vụ
+    private List<Model_DichVu> executeQuery(String sql, Object... args) {
+        List<Model_DichVu> list = new ArrayList<>();
         try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                String idDV;
-                String tenDV;
-                float giaDV;
-                String ghichu;
-
-                idDV = rs.getString(1);
-                tenDV = rs.getString(2);
-                giaDV = rs.getFloat(3);
-              
-                ghichu = rs.getString(4);
-
-                list.add(new Model_DichVu(idDV, tenDV, giaDV, ghichu));
+            ResultSet rs = null;
+            try {
+                rs = JdbcHelPer.executeQuery(sql, args);
+                while (rs.next()) {
+                    // Chuyển ResultSet thành đối tượng DichVu
+                    Model_DichVu model = mapResultSetToModel(rs);
+                    list.add(model);
+                }
+            } finally {
+                // Đảm bảo đóng kết nối sau khi sử dụng
+                if (rs != null) {
+                    rs.getStatement().getConnection().close();
+                }
             }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error executing query", ex);
         }
+        return list;
+    }
+
+    // Chuyển ResultSet thành đối tượng DichVu
+    private Model_DichVu mapResultSetToModel(ResultSet rs) throws SQLException {
+        Model_DichVu model = new Model_DichVu();
+        model.setIdDV(rs.getString("id_DV"));
+        model.setTenDV(rs.getString("ten_DV"));
+        model.setGiaDV(rs.getFloat("gia_DV"));
+        return model;
     }
 }

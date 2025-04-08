@@ -4,15 +4,17 @@
  */
 package HS.Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Quyet
  */
 public class Model_Booking_Phong {
     String id_booking_phong;
-    String ngay_dat;
-    String check_in;
-    String check_out;
+    
+    Date check_in;
+    Date check_out;
     String id_phong;
     String id_KH;
     String id_NV;
@@ -21,9 +23,8 @@ public class Model_Booking_Phong {
     public Model_Booking_Phong() {
     }
 
-    public Model_Booking_Phong(String id_booking_phong, String ngay_dat, String check_in, String check_out, String id_phong, String id_KH, String id_NV, boolean is_deleted) {
+    public Model_Booking_Phong(String id_booking_phong, Date check_in, Date check_out, String id_phong, String id_KH, String id_NV, boolean is_deleted) {
         this.id_booking_phong = id_booking_phong;
-        this.ngay_dat = ngay_dat;
         this.check_in = check_in;
         this.check_out = check_out;
         this.id_phong = id_phong;
@@ -31,6 +32,8 @@ public class Model_Booking_Phong {
         this.id_NV = id_NV;
         this.is_deleted = is_deleted;
     }
+
+    
 
     public String getId_booking_phong() {
         return id_booking_phong;
@@ -40,29 +43,23 @@ public class Model_Booking_Phong {
         this.id_booking_phong = id_booking_phong;
     }
 
-    public String getNgay_dat() {
-        return ngay_dat;
-    }
-
-    public void setNgay_dat(String ngay_dat) {
-        this.ngay_dat = ngay_dat;
-    }
-
-    public String getCheck_in() {
+    public Date getCheck_in() {
         return check_in;
     }
 
-    public void setCheck_in(String check_in) {
+    public void setCheck_in(Date check_in) {
         this.check_in = check_in;
     }
 
-    public String getCheck_out() {
+    public Date getCheck_out() {
         return check_out;
     }
 
-    public void setCheck_out(String check_out) {
+    public void setCheck_out(Date check_out) {
         this.check_out = check_out;
     }
+
+
 
     public String getId_phong() {
         return id_phong;
@@ -102,7 +99,7 @@ public class Model_Booking_Phong {
   
       public Object[] toDataRow(){
         return new Object[]{
-            this.getId_booking_phong(),this.getId_phong(),this.getId_KH(),this.getId_NV(),this.getNgay_dat(),this.getCheck_in(),this.getCheck_out()
+            this.getId_booking_phong(),this.getId_phong(),this.getId_KH(),this.getId_NV(),this.getCheck_in(),this.getCheck_out()
         };
     }
 }

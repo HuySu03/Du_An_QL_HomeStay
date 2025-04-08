@@ -5,7 +5,7 @@
 package HS.View;
 
 import HS.Model.Model_Phong;
-import HS.Repo.Repo_Ds_Phong; 
+import HS.Repo.Repo_Phong;
 // Import Repo_Ds_Phong
 import java.awt.Color;
 
@@ -14,54 +14,73 @@ import java.awt.Color;
  * @author Admin
  */
 public class Chi_Tiet_Phong extends javax.swing.JPanel {
-     private View_Main mainForm; // Tham chiếu của form chính
-    Repo_Ds_Phong repoPhong = new Repo_Ds_Phong(); // Khởi tạo đối tượng Repo_Ds_Phong
-    Model_Phong dsp=new Model_Phong();
+
+    private View_Main mainForm;
+    private Repo_Phong repoPhong = new Repo_Phong();
 
     public Chi_Tiet_Phong(String maphong, View_Main main) {
         this.mainForm = main;
         initComponents();
-         String maphong1 = maphong;
+        String maphong1 = maphong;
         initData(maphong1);
-       // Khởi tạo dữ liệu phòng từ mã phòng
+
     }
- public void initData(String maphong) {
-    try {
-        Model_Phong danhsach = repoPhong.findById(maphong);
-        
-        // Kiểm tra nếu đối tượng danhsach là null
-        if (danhsach == null) {
-            System.out.println("Không tìm thấy phòng với mã: " + maphong);
-            return;  // Dừng lại nếu không tìm thấy phòng
+    
+
+    public void initData(String maphong) {
+        try {
+            // Lấy thông tin phòng từ repo
+            Model_Phong danhsach = repoPhong.getById(maphong);
+
+            // Kiểm tra nếu không tìm thấy phòng
+            if (danhsach == null) {
+                System.out.println("Không tìm thấy phòng với mã: " + maphong);
+                return;
+            }
+
+            // Cập nhật thông tin phòng lên giao diện
+            lblMaPhong.setText(danhsach.getId_phong());
+
+            // Kiểm tra trạng thái phòng
+            if (danhsach.isTrangthai()) { // Nếu phòng đang sử dụng (trang thái = true)
+                JpaneView.setBackground(Color.red);
+                btn_xacnhan.setText("Thanh toán");
+                btn_xacnhan.setBackground(Color.BLUE);
+                
+                lblTrangThai.setText(danhsach.getTrangThai());
+                lblLoaiPhong.setText(danhsach.getLoaiPhong());
+            } else { // Nếu phòng không sử dụng (trang thái = false)
+                 JpaneView.setBackground(Color.GREEN);
+                btn_xacnhan.setText("Đặt phòng");
+             
+                lblTrangThai.setText(danhsach.getTrangThai());
+              lblLoaiPhong.setText(danhsach.getLoaiPhong());
+            }
+           
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
         }
-
-        // Tiếp tục xử lý nếu phòng tồn tại
-        lblMaPhong.setText(danhsach.getId_Phong());
-
-        if (danhsach.getTrangThaiAsString().equals("Đang sử dụng")) {
-            JpaneView.setBackground(Color.red);
-            btn_xacnhanj.setText("Thanh toán");
-            btn_xacnhanj.setBackground(Color.BLUE);
-        } else {
-            JpaneView.setBackground(Color.GREEN);
-            btn_xacnhanj.setText("Đặt phòng");
-             btn_xacnhanj.setBackground(Color.white);
-        }
-
-        lblKieuPhong.setText(danhsach.getGhi_Chu());
-        lblLoaiPhong.setText(danhsach.getLoaiPhongAsString());
-        lblTrangThai.setText(danhsach.getTrangThaiAsString());
-
-    } catch (Exception e) {
-        System.err.println("Lỗi khi tải dữ liệu phòng: " + e.getMessage());
     }
-}
-
- 
- 
-    
-    
-    
+// private void handleButtonClick(java.awt.event.ActionEvent evt) {
+//    String maPhong = lblMaPhong.getText();
+//    Model_Phong phong = repoPhong.getById(maPhong);
+//
+//    if (phong.getTrangThai().equals("Đang sử dụng")) {
+//        System.out.println("Thực hiện thanh toán cho phòng " + maPhong);
+//        phong.setTrangthai(false); // Trả phòng (Cập nhật trạng thái về "Trống")
+//    } else {
+//        System.out.println("Đặt phòng " + maPhong);
+//        phong.setTrangthai(true); // Đặt phòng
+//    }
+//
+//    // Cập nhật trạng thái phòng theo giá trị thực tế
+//    repoPhong.update(phong);
+//
+//    // Cập nhật lại giao diện sau khi thay đổi trạng thái
+//    initData(maPhong);
+//}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,13 +94,11 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         JpaneView = new javax.swing.JPanel();
         lblMaPhong = new javax.swing.JLabel();
-        lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
         lblLoaiPhong = new javax.swing.JLabel();
-        lblKieuPhong = new javax.swing.JLabel();
         lblTrangThai = new javax.swing.JLabel();
-        btn_xacnhanj = new javax.swing.JButton();
+        btn_xacnhan = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
@@ -90,9 +107,6 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
         lblMaPhong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMaPhong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMaPhong.setText("Mã Phòng:");
-
-        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbl1.setText("Kiểu phòng:");
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbl2.setText("Loại phòng:");
@@ -103,16 +117,13 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
         lblLoaiPhong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblLoaiPhong.setText("Loại phòng:");
 
-        lblKieuPhong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblKieuPhong.setText("Kiểu phòng:");
-
         lblTrangThai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTrangThai.setText("Trạng thái: ");
 
-        btn_xacnhanj.setText("Đặt phòng");
-        btn_xacnhanj.addActionListener(new java.awt.event.ActionListener() {
+        btn_xacnhan.setText("Đặt phòng");
+        btn_xacnhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_xacnhanjActionPerformed(evt);
+                btn_xacnhanActionPerformed(evt);
             }
         });
 
@@ -125,21 +136,17 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
                 .addGroup(JpaneViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMaPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JpaneViewLayout.createSequentialGroup()
-                        .addComponent(lbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblKieuPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                    .addGroup(JpaneViewLayout.createSequentialGroup()
-                        .addComponent(lbl2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLoaiPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(JpaneViewLayout.createSequentialGroup()
                         .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(JpaneViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JpaneViewLayout.createSequentialGroup()
-                                .addComponent(btn_xacnhanj)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btn_xacnhan)
+                                .addGap(0, 73, Short.MAX_VALUE))
+                            .addComponent(lblTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(JpaneViewLayout.createSequentialGroup()
+                        .addComponent(lbl2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblLoaiPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         JpaneViewLayout.setVerticalGroup(
@@ -149,18 +156,14 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
                 .addComponent(lblMaPhong)
                 .addGap(18, 18, 18)
                 .addGroup(JpaneViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl1)
-                    .addComponent(lblKieuPhong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(JpaneViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl2)
                     .addComponent(lblLoaiPhong))
-                .addGap(12, 12, 12)
+                .addGap(26, 26, 26)
                 .addGroup(JpaneViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl3)
                     .addComponent(lblTrangThai))
-                .addGap(18, 18, 18)
-                .addComponent(btn_xacnhanj)
+                .addGap(33, 33, 33)
+                .addComponent(btn_xacnhan)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -203,31 +206,36 @@ public class Chi_Tiet_Phong extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_xacnhanjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacnhanjActionPerformed
+    private void btn_xacnhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacnhanActionPerformed
         // TODO add your handling code here:
-         
-         String value = btn_xacnhanj.getText();
-    
-    // Lấy thông tin từ các JLabel
-    String maPhong = lblMaPhong.getText(); // Mã phòng
-    String loaiPhong = lblLoaiPhong.getText(); // Loại phòng
+        
+        String value = btn_xacnhan.getText();
+        String maphong = lblMaPhong.getText();
+        String loaiphong = lblLoaiPhong.getText();
 
-    // Tạo đối tượng FormPhieuDat hoặc FormThanhToan tùy theo trạng thái nút
-   
-      Phieu_dat phieuDat = new Phieu_dat(maPhong, loaiPhong, mainForm);
-phieuDat.setVisible(true);
+// Tạo đối tượng tương ứng với trạng thái nút
+        if (value.equals("Đặt phòng")) {
+            // Khi nút là "Đặt phòng", mở form Phiếu Đặt
+            FormPhieuDat phieudat = new FormPhieuDat(maphong, loaiphong, mainForm);
+            phieudat.setVisible(true);
+          
+            
+        } else {
+            // Khi nút là "Thanh toán", mở form Thanh Toán
+//            FormThanhToan hoadon = new FormThanhToan(maphong, mainForm);
+  //          hoadon.setVisible(true);
+        }
 
-    }//GEN-LAST:event_btn_xacnhanjActionPerformed
+
+    }//GEN-LAST:event_btn_xacnhanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpaneView;
-    private javax.swing.JButton btn_xacnhanj;
+    private javax.swing.JButton btn_xacnhan;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
-    private javax.swing.JLabel lblKieuPhong;
     private javax.swing.JLabel lblLoaiPhong;
     private javax.swing.JLabel lblMaPhong;
     private javax.swing.JLabel lblTrangThai;

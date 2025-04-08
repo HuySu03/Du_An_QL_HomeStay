@@ -3,20 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/demo/Final/Final/src/pkgfinal/Final.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/View_Main.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Model/Model_Phong.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Model/Model_Nhan_Vien.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Utils/ShareHelper.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Model/Model_Booking_Phong.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/Phieu_dat.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Repo/Repo_Ds_Phong.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Utils/DBconnet.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/Repo/Repo_Booking_Phong.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/Chi_Tiet_Phong.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/Phong_Vieww.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/JpanelTrangChu.java</file>
-            <file>file:/D:/demo/Final/Final/src/HS/View/JpanelDatPhongg.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Repo/Repo_Phong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Repo/Repo_Booking_Phong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Model/Model_DichVu.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/View_Main.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/DichVu_View.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/JpanelDatPhong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/Chi_Tiet_Phong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/Phong_View.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/FormPhieuDat.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Repo/Repo_DSPhong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/View/Phong1_View.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Model/Model_Phong.java</file>
+            <file>file:/C:/Users/Quyet/Desktop/Final/src/HS/Repo/Repo_identity.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,18 +12,18 @@ public class Model_Order_DichVu {
     String id_order_DV;
     String id_DV;
     String id_phong;
-    String ngay_order;
-    String ghichu;
+    String ten_Dv;
+    String Don_Gia;
 
     public Model_Order_DichVu() {
     }
 
-    public Model_Order_DichVu(String id_order_DV, String id_DV, String id_phong, String ngay_order, String ghichu) {
+    public Model_Order_DichVu(String id_order_DV, String id_DV, String id_phong, String ten_Dv, String Don_Gia) {
         this.id_order_DV = id_order_DV;
         this.id_DV = id_DV;
         this.id_phong = id_phong;
-        this.ngay_order = ngay_order;
-        this.ghichu = ghichu;
+        this.ten_Dv = ten_Dv;
+        this.Don_Gia = Don_Gia;
     }
 
     public String getId_order_DV() {
@@ -50,28 +50,24 @@ public class Model_Order_DichVu {
         this.id_phong = id_phong;
     }
 
-    public String getNgay_order() {
-        return ngay_order;
+    public String getTen_Dv() {
+        return ten_Dv;
     }
 
-    public void setNgay_order(String ngay_order) {
-        this.ngay_order = ngay_order;
+    public void setTen_Dv(String ten_Dv) {
+        this.ten_Dv = ten_Dv;
     }
 
-    public String getGhichu() {
-        return ghichu;
+    public String getDon_Gia() {
+        return Don_Gia;
     }
 
-    public void setGhichu(String ghichu) {
-        this.ghichu = ghichu;
+    public void setDon_Gia(String Don_Gia) {
+        this.Don_Gia = Don_Gia;
     }
     
     
-      public Object[] toDataRow(){
-        return new Object[]{
-            this.getId_order_DV(),this.getId_DV(),this.getId_phong(),this.getNgay_order(),this.getGhichu()
-        };
-    }
-    
+
+  
     
 }

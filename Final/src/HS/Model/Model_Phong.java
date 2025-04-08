@@ -6,106 +6,68 @@ package HS.Model;
 
 /**
  *
- * @author Admin
+ * @author Quyet
  */
 public class Model_Phong {
-    String id_Phong;
-    boolean Loai_Phong;
-    float Gia;
-    String tang;
-    int dientich;
-    String Ghi_Chu;
-    boolean Trangthai;
+    String id_phong;
+    boolean loai_phong;
+    float gia_phong;
+    boolean trangthai;
 
     public Model_Phong() {
     }
 
-    public Model_Phong(String id_Phong, boolean Loai_Phong) {
-        this.id_Phong = id_Phong;
-        this.Loai_Phong = Loai_Phong;
+    public Model_Phong(String id_phong, boolean loai_phong, float gia_phong, boolean trangthai) {
+        this.id_phong = id_phong;
+        this.loai_phong = loai_phong;
+        this.gia_phong = gia_phong;
+     
+        this.trangthai = trangthai;
     }
     
-    
-    
-    
+  
 
-    public Model_Phong(String id_Phong, boolean Loai_Phong, float Gia, String tang, int dientich, String Ghi_Chu, boolean Trangthai) {
-        this.id_Phong = id_Phong;
-        this.Loai_Phong = Loai_Phong;
-        this.Gia = Gia;
-        this.tang = tang;
-        this.dientich = dientich;
-        this.Ghi_Chu = Ghi_Chu;
-        this.Trangthai = Trangthai;
+    public String getId_phong() {
+        return id_phong;
     }
 
-    public String getId_Phong() {
-        return id_Phong;
+    public void setId_phong(String id_phong) {
+        this.id_phong = id_phong;
     }
 
-    public void setId_Phong(String id_Phong) {
-        this.id_Phong = id_Phong;
+    public boolean isLoai_phong() {
+        return loai_phong;
     }
 
-    public boolean isLoai_Phong() {
-        return Loai_Phong;
+    public void setLoai_phong(boolean loai_phong) {
+        this.loai_phong = loai_phong;
+    }
+    public String getLoaiPhong() {
+        return loai_phong ? "VIP" : "Thường";
     }
 
-    public void setLoai_Phong(boolean Loai_Phong) {
-        this.Loai_Phong = Loai_Phong;
+    public float getGia_phong() {
+        return gia_phong;
     }
 
-    public float getGia() {
-        return Gia;
+    public void setGia_phong(float gia_phong) {
+        this.gia_phong = gia_phong;
     }
 
-    public void setGia(float Gia) {
-        this.Gia = Gia;
-    }
-
-    public String getTang() {
-        return tang;
-    }
-
-    public void setTang(String tang) {
-        this.tang = tang;
-    }
-
-    public int getDientich() {
-        return dientich;
-    }
-
-    public void setDientich(int dientich) {
-        this.dientich = dientich;
-    }
-
-    public String getGhi_Chu() {
-        return Ghi_Chu;
-    }
-
-    public void setGhi_Chu(String Ghi_Chu) {
-        this.Ghi_Chu = Ghi_Chu;
-    }
+ 
 
     public boolean isTrangthai() {
-        return Trangthai;
+        return trangthai;
     }
 
-    public void setTrangthai(boolean Trangthai) {
-        this.Trangthai = Trangthai;
+    public void setTrangthai(boolean trangthai) {
+        this.trangthai = trangthai;
+    }
+      public String getTrangThai() {
+        return trangthai ? "Đang sử dụng" : "Chưa sử dụng";
+    }
+
+ 
     }
     
-     public String getLoaiPhongAsString() {
-        return Loai_Phong ? "VIP" : "Thường";
-    }
-      public String getTrangThaiAsString() {
-        return Trangthai ? "Đang sử dụng" : "Trống";
-    }
-  public Object[] toDataRow(){
-        return new Object[]{
-            this.getId_Phong(),this.getLoaiPhongAsString(),this.getGia(),this.getTang(),this.getDientich(),this.getGhi_Chu(),this.getTrangThaiAsString()
-        };
-    }
-   
-    
-}
+

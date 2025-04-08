@@ -1,179 +1,101 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package HS.Repo;
 
 import HS.Model.Model_Booking_Phong;
-import HS.Utils.DBconnet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import HS.Utils.JdbcHelPer;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 /**
- *
- * @author Quyet
+ 
  */
-public class Repo_Booking_Phong {
+public class Repo_Booking_Phong{
 
-    private Connection con = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
-    private String sql = null;
+    // Thêm mới một đơn đặt phòng
+public void insert(Model_Booking_Phong model) {
+   String sql = "INSERT INTO Booking_Phong (check_in, check_out, id_phong, id_KH, id_NV, is_deleted) VALUES (?, ?, ?, ?, ?, ?)";
+JdbcHelPer.executeUpdate(sql,
+    model.getCheck_in(),
+    model.getCheck_out(),
+    model.getId_phong(),
+    model.getId_KH(),
+    model.getId_NV(),
+    0);
 
-    public Repo_Booking_Phong() {
-        con = DBconnet.getConnection();
+
     }
 
-    public ArrayList<Model_Booking_Phong> getAll() {
-        ArrayList<Model_Booking_Phong> list = new ArrayList<>();
 
-        sql = "select * from Booking_Phong where is_deleted = 0;";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+    // Lấy tất cả đơn đặt phòng
+    public List<Model_Booking_Phong> getAll() {
+        String sql = "SELECT * FROM Booking_Phong";
+         List<Model_Booking_Phong> bookings = new ArrayList<>();
+        return executeQuery(sql);
+        
+    }
+
+    // Lấy đơn đặt phòng theo từ khóa tìm kiếm
+//    public List<Model_Booking_Phong> getByKeyword(String keyword) {
+//        String sql = "SELECT * FROM Booking_Phong WHERE MaKH LIKE ? "
+//                + "UNION SELECT * FROM KhachHang WHERE MaDP LIKE ? "
+//                + "UNION SELECT * FROM KhachHang WHERE MaNV LIKE ? "
+//                + "UNION SELECT * FROM KhachHang WHERE MaKieuThue LIKE ? "
+//                + "UNION SELECT * FROM KhachHang WHERE MaPhong LIKE ? "
+//                + "UNION SELECT * FROM KhachHang WHERE MaKH LIKE ?";
+//        return executeQuery(sql, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%");
+//    }
+
+    // Tìm đơn đặt phòng theo mã khách hàng
+    public Model_Booking_Phong getByMaKH(String maKH) {
+        String sql = "SELECT * FROM Booking_Phong WHERE id_KH=?";
+        List<Model_Booking_Phong> list = executeQuery(sql, maKH);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
+    // Tìm đơn đặt phòng theo mã đơn phòng
+    public Model_Booking_Phong getByMaDP(int maDP) {
+        String sql = "SELECT * FROM Booking_Phong WHERE id_booking_phong=?";
+        List<Model_Booking_Phong> list = executeQuery(sql, maDP);
+        return list.size() > 0 ? list.get(0) : null;
+    }   
+
+    // Tìm đơn đặt phòng theo mã phòng
+    public List<Model_Booking_Phong> getByMaPhong(String maPhong) {
+        String sql = "SELECT * FROM Booking_Phong WHERE id_phong=?";
+        return executeQuery(sql, maPhong);
+    }
+
+    // Thực thi câu lệnh SQL và trả về danh sách các đối tượng DatPhong
+    private List<Model_Booking_Phong> executeQuery(String sql, Object... args) {
+        List<Model_Booking_Phong> list = new ArrayList<>();
+        try (ResultSet rs = JdbcHelPer.executeQuery(sql, args)) {
             while (rs.next()) {
-
-                String id_booking_phong;
-                String ngay_dat;
-                String check_in;
-                String check_out;
-                String id_phong;
-                String id_KH;
-                String id_NV;
-                
-
-                id_booking_phong = rs.getString(1);
-                ngay_dat = rs.getString(2);
-                check_in = rs.getString(3);
-                check_out = rs.getString(4);
-                id_phong = rs.getString(5);
-                id_KH = rs.getString(6);
-                id_NV = rs.getString(7);
-
-                list.add(new Model_Booking_Phong(id_booking_phong, ngay_dat, check_in, check_out, id_phong, id_KH, id_NV, true));
+                Model_Booking_Phong model = mapResultSetToDatPhong(rs);
+                list.add(model);
             }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
+        return list;
     }
-public void deleteSoft(String bookingId) {
-    String sql = "UPDATE booking_phong SET is_deleted = 1 WHERE id_booking_phong = ?";
-    try (PreparedStatement statement = con.prepareStatement(sql)) { // Sửa từ connection thành con
-        statement.setString(1, bookingId);
-        int rowsAffected = statement.executeUpdate();
-        if (rowsAffected > 0) {
-            System.out.println("Đã xóa mềm bản ghi có id_booking_phong = " + bookingId);
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    
-    
-}
-  public int addPhong(Model_Booking_Phong u) {
-        sql = "INSERT INTO booking_phong (id_booking_phong, id_phong, id_KH, id_NV, ngay_dat, check_in, check_out, is_deleted) " +
-                 "VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
-        try {
-            ps = con.prepareStatement(sql);
 
-            ps.setObject(1, u.getId_booking_phong());
-            ps.setObject(2, u.getId_phong());
-            ps.setObject(3, u.getId_KH());
-            ps.setObject(4, u.getId_NV());
-            ps.setObject(5, u.getNgay_dat());
-            ps.setObject(6, u.getCheck_in());
-            ps.setObject(7, u.getCheck_out());
-            
-            
-            return ps.executeUpdate();//thêm/sủa/xoá:executeUpđate()
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-
-        }
+    // Chuyển ResultSet thành đối tượng DatPhong
+    private Model_Booking_Phong mapResultSetToDatPhong(ResultSet rs) throws SQLException {
+        Model_Booking_Phong model = new Model_Booking_Phong();
+        model.setId_booking_phong(rs.getString("id_booking_phong"));
+        model.setCheck_in(rs.getDate("Check_in"));
+        model.setCheck_out(rs.getDate("Check_out"));
+        model.setId_phong(rs.getString("id_phong"));
+        model.setId_KH(rs.getString("id_KH"));
+        model.setId_NV(rs.getString("id_NV"));
+        
+        
+        
+        return model;
     }
   
-public int updatePhong(Model_Booking_Phong u_New) {
-    sql = "UPDATE Booking_Phong SET ngay_dat=?, check_in=?, check_out=?, "
-        + "id_phong=?, id_KH=?, id_NV=?, is_deleted=0 WHERE id_booking_phong=?";
-    try {
-        ps = con.prepareStatement(sql);
 
-        // Xử lý ngày đặt
-        if (u_New.getNgay_dat() != null && !u_New.getNgay_dat().isEmpty()) {
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date parsedDate = format.parse(u_New.getNgay_dat());
-                ps.setDate(1, new java.sql.Date(parsedDate.getTime())); 
-            } catch (Exception e) {
-                e.printStackTrace();
-                ps.setNull(1, java.sql.Types.DATE);
-            }
-        } else {
-            ps.setNull(1, java.sql.Types.DATE);
-        }
-
-        // Xử lý check-in
-        if (u_New.getCheck_in() != null && !u_New.getCheck_in().isEmpty()) {
-            ps.setTimestamp(2, Timestamp.valueOf(u_New.getCheck_in()));
-        } else {
-            ps.setNull(2, java.sql.Types.TIMESTAMP);
-        }
-
-        // Xử lý check-out
-        if (u_New.getCheck_out() != null && !u_New.getCheck_out().isEmpty()) {
-            ps.setTimestamp(3, Timestamp.valueOf(u_New.getCheck_out()));
-        } else {
-            ps.setNull(3, java.sql.Types.TIMESTAMP);
-        }
-
-        ps.setString(4, u_New.getId_phong()); 
-        ps.setString(5, u_New.getId_KH()); 
-        ps.setString(6, u_New.getId_NV()); 
-        ps.setString(7, u_New.getId_booking_phong());
-
-        return ps.executeUpdate();
-    } catch (Exception e) {
-        e.printStackTrace();
-        return 0;
-    } finally {
-        try {
-            if (ps != null) ps.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
 }
 
 
-
-     /*public int updatePhong(Model_Booking_Phong u_New, String ac_sua) {
-        sql = "UPDATE Booking_Phong SET ngay_dat=?, check_in=?, check_out=?, "
-                   + "id_phong=?, id_KH=?, id_NV=?, is_deleted=0 WHERE id_booking_phong=?";
-        try {
-        ps = con.prepareStatement(sql);
-        
-        ps.setDate(1, (u_New.getNgay_dat())); // ngày đặt
-        ps.setTimestamp(2, (u_New.getCheck_in())); // check-in
-        ps.setTimestamp(3, (u_New.getCheck_out())); // check-out
-        ps.setString(4, u_New.getId_phong()); // ID phòng
-        ps.setString(5, u_New.getId_KH()); // ID khách hàng
-        ps.setString(6, u_New.getId_NV()); // ID nhân viên
-        ps.setString(7, u_New.getId_booking_phong()); // WHERE điều kiện cập nhật
-
-        return ps.executeUpdate();
-    } catch (Exception e) {
-        e.printStackTrace();
-        return 0;
-    }
-    }
-}
-*/

@@ -80,7 +80,7 @@ final void showData(int index) {
     public Model_Phong readForm() {
         String id_phong;
         boolean loai_phong;
-        String gia_phong;
+        float gia_phong;
         String tang;
         float dientich;
         String ghichu;
@@ -108,7 +108,7 @@ final void showData(int index) {
         // Kiểm tra trạng thái phòng (Đã đặt hoặc Trống)
         trangthai = rdo_dadat.isSelected();
 
-        return new Model_Phong(id_phong, loai_phong, dientich, tang, WIDTH, ghichu, trangthai);
+        return new Model_Phong(id_phong, loai_phong, gia_phong, trangthai);
     }
 
     /**

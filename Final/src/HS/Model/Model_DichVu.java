@@ -24,9 +24,9 @@ public class Model_DichVu {
         this.ghichu = ghichu;
     }
 
-    public Model_DichVu(String id_phong, boolean loai_phong, String gia_phong, boolean trangthai) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ 
+
+  
 
     public String getIdDV() {
         return idDV;

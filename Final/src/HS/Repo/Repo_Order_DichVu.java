@@ -1,59 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package HS.Repo;
+package HS.repo;
 
-import HS.Model.Model_Booking_Phong;
 import HS.Model.Model_Order_DichVu;
-import HS.Utils.DBconnet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import HS.Utils.JdbcHelPer;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Quyet
+ * @author Admin
  */
 public class Repo_Order_DichVu {
 
-    private Connection con = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
-    private String sql = null;
+    // Thêm dịch vụ đã thuê
+    public void insert(Model_Order_DichVu model) {
+        String sql = "INSERT INTO Order_Dich_Vu ( id_DV, id_phong, ten_DV,Don_Gia) VALUES (?, ?, ?, ?)";
+        JdbcHelPer.executeUpdate(sql,
+                model.getId_DV(),
+                model.getId_phong(),
+                model.getTen_Dv(),
+                model.getDon_Gia()
+        );
 
-    public Repo_Order_DichVu() {
-        con = DBconnet.getConnection();
     }
 
-    public ArrayList<Model_Order_DichVu> getAll() {
-        ArrayList<Model_Order_DichVu> list = new ArrayList<>();
+    // Tìm dịch vụ đã thuê theo mã đặt phòng
+    public List<Model_Order_DichVu> findById(int maDP) {
+        String sql = "SELECT * FROM Order_Dich_Vu WHERE MaDP = ?";
+        return executeQuery(sql, maDP);
+    }
 
-        sql = "select * from Order_Dich_Vu ";
+    // Xóa dịch vụ đã thuê theo mã đặt phòng
+    public void delete(int maDP) {
+        String sql = "DELETE FROM Order_Dich_Vu WHERE MaDP = ?";
+        JdbcHelPer.executeUpdate(sql, maDP);
+    }
+
+    // Thực thi câu lệnh SQL và trả về danh sách dịch vụ đã thuê
+    private List<Model_Order_DichVu> executeQuery(String sql, Object... args) {
+        List<Model_Order_DichVu> list = new ArrayList<>();
         try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                String id_order_DV;
-                String id_DV;
-                String id_phong;
-                String ngay_order;
-                String ghichu;
-
-                id_order_DV = rs.getString(1);
-                id_DV = rs.getString(2);
-                id_phong = rs.getString(3);
-                ngay_order = rs.getString(4);
-                ghichu = rs.getString(5);
-               
-
-                list.add(new Model_Order_DichVu(id_order_DV, id_DV, id_phong, ngay_order, ghichu));
+            ResultSet rs = null;
+            try {
+                rs = JdbcHelPer.executeQuery(sql, args);
+                while (rs.next()) {
+                    // Chuyển ResultSet thành đối tượng DichVuDaThue
+                    Model_Order_DichVu model = mapResultSetToModel(rs);
+                    list.add(model);
+                }
+            } finally {
+                // Đảm bảo đóng kết nối sau khi sử dụng
+                if (rs != null) {
+                    rs.getStatement().getConnection().close();
+                }
             }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error executing query", ex);
         }
+        return list;
     }
+
+    // Chuyển ResultSet thành đối tượng DichVuDaThue
+    private Model_Order_DichVu mapResultSetToModel(ResultSet rs) throws SQLException {
+        Model_Order_DichVu model = new Model_Order_DichVu();
+        model.setId_order_DV(rs.getString("id_order_DV"));
+        model.setId_DV(rs.getString("id_DV"));
+        model.setId_phong(rs.getString("id_phong"));
+
+        return model;
+    }
+
+    
 }

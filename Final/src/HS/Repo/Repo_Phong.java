@@ -1,63 +1,78 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package HS.Repo;
+    package HS.Repo;
 
-import HS.Model.Model_Booking_Phong;
-import HS.Model.Model_Phong;
-import HS.Utils.DBconnet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+    import HS.Model.Model_Phong;
+    import HS.Utils.DBconnet;
+    import HS.Utils.JdbcHelPer;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.List;
 
-/**
- *
- * @author Quyet
- */
-public class Repo_Phong {
+    /**
+     *
+     * @author Quyet
+     */
+    public class Repo_Phong {
 
-    private Connection con = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
-    private String sql = null;
+        // Lấy danh sách phòng
+        public List<Model_Phong> getAll() {
+            String sql = "SELECT * FROM Phong";
+            return executeQuery(sql);
+        }
 
-    public Repo_Phong() {
-        con = DBconnet.getConnection();
-    }
+        // Tìm phòng theo mã phòng
+        public Model_Phong getById(String maphong) {
+            String sql = "select * from Phong WHERE id_phong = ?";
+            List<Model_Phong> list = executeQuery(sql, maphong);
+            return list.size() > 0 ? list.get(0) : null;
+        }
 
-    public ArrayList<Model_Phong>getAll() {
-        ArrayList<Model_Phong> list = new ArrayList<>();
+        // Cập nhật trạng thái phòng
+        public void update(Model_Phong model) {
+            String sql = "UPDATE Phong SET trang_thai=? WHERE id_phong=?";
+            JdbcHelPer.executeUpdate(sql,
+                    model.isTrangthai(),
+                    model.getId_phong());
+        }
 
-        sql = "select * from Phong ";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+        // Thực thi câu lệnh SQL và trả về danh sách phòng
+       private List<Model_Phong> executeQuery(String sql, Object... args) {
+    List<Model_Phong> list = new ArrayList<>();
+    ResultSet rs = null;
+    try {
+        rs = JdbcHelPer.executeQuery(sql, args);
+        if (rs != null) { // Kiểm tra nếu rs không null
             while (rs.next()) {
-
-                String id_phong;
-                boolean loai_phong;
-                String gia_phong;
-                String tang;
-                float dientich;
-                String ghichu;
-                boolean trangthai;
-
-                id_phong = rs.getString(1);
-                loai_phong = rs.getBoolean(2);
-                gia_phong = rs.getString(3);
-                tang = rs.getString(4);
-                dientich = rs.getFloat(5);
-                ghichu = rs.getString(6);
-                trangthai  = rs.getBoolean(7);
-
-                list.add(new Model_Phong(id_phong, loai_phong, dientich, tang, 0, ghichu, trangthai));
+                Model_Phong model = mapResultSetToModel(rs);
+                list.add(model);
             }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        }
+    } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+    } finally {
+        if (rs != null) { // Kiểm tra lại nếu rs không null trước khi đóng kết nối
+            try {
+                if(rs.getStatement() != null) {
+                    rs.getStatement().getConnection().close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
+    return list;
 }
+
+
+        // Chuyển ResultSet thành đối tượng Model_Phong
+  private Model_Phong mapResultSetToModel(ResultSet rs) throws SQLException {
+    Model_Phong model = new Model_Phong();
+    model.setId_phong(rs.getString("id_phong"));
+    model.setLoai_phong(rs.getBoolean("loai_phong")); // <- QUAN TRỌNG
+    model.setGia_phong(rs.getFloat("gia_phong"));
+    model.setTrangthai(rs.getBoolean("trang_thai"));   // <- QUAN TRỌNG
+    return model;
+}
+
+
+    }

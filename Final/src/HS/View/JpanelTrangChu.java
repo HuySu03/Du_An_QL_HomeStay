@@ -26,101 +26,49 @@ public class JpanelTrangChu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JpanelView4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        JpanelView = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        JpanelView4.setBackground(new java.awt.Color(255, 255, 204));
-        JpanelView4.setPreferredSize(new java.awt.Dimension(730, 556));
-        JpanelView4.setRequestFocusEnabled(false);
+        JpanelView.setBackground(new java.awt.Color(255, 255, 204));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel18.setText("KHÁCH SẠN XIN CHÀO");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/IMG/homestay background.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Dịch vụ tốt nhất, Đúng lúc, Đúng người");
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/img/5 sao.png"))); // NOI18N
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HS/img/hotel.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout JpanelView4Layout = new javax.swing.GroupLayout(JpanelView4);
-        JpanelView4.setLayout(JpanelView4Layout);
-        JpanelView4Layout.setHorizontalGroup(
-            JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelView4Layout.createSequentialGroup()
-                .addGroup(JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jLabel20))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel18))
-                    .addGroup(JpanelView4Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+        javax.swing.GroupLayout JpanelViewLayout = new javax.swing.GroupLayout(JpanelView);
+        JpanelView.setLayout(JpanelViewLayout);
+        JpanelViewLayout.setHorizontalGroup(
+            JpanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelViewLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 372, Short.MAX_VALUE))
         );
-        JpanelView4Layout.setVerticalGroup(
-            JpanelView4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelView4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel18)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+        JpanelViewLayout.setVerticalGroup(
+            JpanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JpanelViewLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(jLabel1)
+                .addContainerGap(462, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpanelView4, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+            .addGap(0, 933, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(JpanelView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(JpanelView4, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addGap(0, 875, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(JpanelView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JpanelView1;
-    private javax.swing.JPanel JpanelView2;
-    private javax.swing.JPanel JpanelView3;
-    private javax.swing.JPanel JpanelView4;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel JpanelView;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
